@@ -9,5 +9,9 @@ Configuración inicial Base de datos:
             'HOST': 'localhost',
             'PORT': '3306',
 
+Superusuario:
+user: admin
+pass: admin
+
 En UBUNTU:
 Activar entorno virtual con: source EMPAQUES_env/bin/activate
