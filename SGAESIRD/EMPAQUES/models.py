@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -13,28 +16,27 @@ class Usuario(models.Model):
 	OPCIONES_ROL = (
         ('A','Administrador'),
         ('E','Empaque'),
-        ('E','Reemplazo'),
+        ('R','Reemplazo'),
     )
 	OPCIONES_ACTIVIDAD = (
 		('A','Activo'),
-		('V','Vacaciones'),
+		('V','Vacaciones'),	
 		('S','Suspendido'),
 		('E','Eliminado')
 	)
 	id_Usuario = models.AutoField(primary_key=True, help_text="ID")
-	rut = models.IntegerField()
-	nombre = models.CharField(max_length=200)
-	apellido = models.CharField(max_length=200)
-	rol = models.CharField(max_length=1, choices=OPCIONES_ROL)
-	fecha_ingreso = models.DateTimeField(default=timezone.now)
-	carrera = models.CharField(max_length=200)
-	universidad = models.ForeignKey(Universidades, on_delete=models.CASCADE)
-	activo = models.CharField(max_length=1, choices=OPCIONES_ACTIVIDAD)
-	telefono = models.CharField(max_length=12)
-	cant_turnos_disponibles = models.IntegerField()
+	usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+	rut = models.CharField(max_length=10, choices=OPCIONES_ROL, null=True)
+	rol = models.CharField(max_length=1, choices=OPCIONES_ROL, null=True)
+	fecha_ingreso = models.DateTimeField(default=timezone.now, null=True)
+	carrera = models.CharField(max_length=200, null=True)
+	universidad = models.ForeignKey(Universidades, on_delete=models.CASCADE, null=True)
+	activo = models.CharField(max_length=1, choices=OPCIONES_ACTIVIDAD, null=True)
+	telefono = models.CharField(max_length=12, null=True)
+	cant_turnos_disponibles = models.IntegerField(null=True)
 
 	def __str__(self):
-		return self.nombre + " " + self.apellido
+		return self.usuario.first_name + " " + self.usuario.last_name
 
 
 class Categoria_anotaciones(models.Model):
