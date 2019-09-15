@@ -5,7 +5,7 @@ from django.views.generic import CreateView, TemplateView
 
 from .models import Usuario
 
-from .forms import SignUpForm
+from .forms import SignUpForm, Usuario_Form
 
 
 
@@ -13,17 +13,31 @@ from .forms import SignUpForm
 def home(request):
 	return render(request, 'home.html', {})
 
-class SignUpView(CreateView):
-    model = Usuario
-    form_class = SignUpForm
-	
-    def form_valid(self, form):
-        '''
-        En esta parte, si el formulario es valido guardamos lo que se obtiene de él y usamos authenticate para que el usuario incie sesión luego de haberse registrado y lo redirigimos al index
-        '''
-        form.save()
-        usuario = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        usuario = authenticate(username=usuario, password=password)
-        login(self.request, usuario)
-        return redirect('/')
+
+def registrate(request):
+    if request.method == "POST":
+        form_account = SignUpForm(request.POST)
+        form_usuario = Usuario_Form(request.POST)
+
+        if form_account.is_valid() and form_usuario.is_valid():
+            post_form_account = form_account.save(commit=False)
+            post_form_usuario = form_usuario.save(commit=False)
+
+            post_form_account.save()
+
+            post_form_usuario.usuario = post_form_account
+            post_form_usuario.rol = 'E'
+            post_form_usuario.activo = 'A'
+            post_form_usuario.cant_turnos_disponibles = 3
+
+            post_form_usuario.save()
+            
+
+            return redirect('/')
+    else:
+        form_account = SignUpForm()
+        form_usuario = Usuario_Form()
+
+
+    return render(request, 'registration/registrate.html', {'form_account': form_account, 'form_usuario': form_usuario})
+

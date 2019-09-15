@@ -1,10 +1,13 @@
 <!-- templates/registration/login.html -->
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Login{% endblock %}
 
 {% block content %}
 
+
+{{ form.as_p }}
 <div>
   <div class= "split left">
     <div class="info">
@@ -24,10 +27,10 @@
 
   <div class="split right">
     
-      <form class="login" name="LoginForm" action="/" method="post">
-        {% csrf_token %}
-        <input type="text" placeholder="Username" for="username">
-        {% csrf_token %}
+      <form class="login" action="/" method="post">{% csrf_token %}
+        {{ form.username|attr:"class:my_css_class" }}
+        {{ form.password|attr:"class:my_css_class" }}
+        
         <input type="password" placeholder="Password" for="password">
         <button>Login</button>
       </form>

@@ -26,7 +26,7 @@ class Usuario(models.Model):
 	)
 	id_Usuario = models.AutoField(primary_key=True, help_text="ID")
 	usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-	rut = models.CharField(max_length=10, choices=OPCIONES_ROL, null=True)
+	rut = models.CharField(max_length=10, null=True)
 	rol = models.CharField(max_length=1, choices=OPCIONES_ROL, null=True)
 	fecha_ingreso = models.DateTimeField(default=timezone.now, null=True)
 	carrera = models.CharField(max_length=200, null=True)
@@ -37,7 +37,8 @@ class Usuario(models.Model):
 
 	def __str__(self):
 		return self.usuario.first_name + " " + self.usuario.last_name
-
+	def get_date(self):
+		return self.created_date
 
 class Categoria_anotaciones(models.Model):
 	id_Categoria_anotaciones = models.AutoField(primary_key=True, help_text="ID")
