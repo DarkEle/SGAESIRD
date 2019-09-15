@@ -5,15 +5,35 @@
 
 {% block content %}
 
-  
-<form class="login" name="LoginForm" action="/" method="post">
-  {% csrf_token %}
-  <input type="text" placeholder="Username" for="username">
-  {% csrf_token %}
-  <input type="password" placeholder="Password" for="password">
-  <button>Login</button>
-</form>
-<a href="https://codepen.io/davinci/" target="_blank">check my other pens</a>
-{% endblock content %}
+<div>
+  <div class= "split left">
+    <div class="info">
 
+      <h1>Agrupación de empaques Santa Isabel Rubén Darío</h1>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Officia et cumque velit ducimus harum exercitationem minima 
+        aliquid aliquam adipisci? Numquam optio incidunt alias magnam 
+        similique repellendus, tempora facere voluptates fugit. Lorem 
+        ipsum dolor sit amet consectetur adipisicing elit. 
+        Officia et cumque velit ducimus harum exercitationem minima 
+        aliquid aliquam adipisci? Numquam optio incidunt alias magnam 
+        similique repellendus, tempora facere voluptates fugit! </p>
+      </div>
+  </div>
+
+  <div class="split right">
+    
+      <form class="login" name="LoginForm" action="/" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Username" for="username">
+        {% csrf_token %}
+        <input type="password" placeholder="Password" for="password">
+        <button>Login</button>
+      </form>
+  </div>
+  <a href="https://codepen.io/davinci/" target="_blank">check my other pens</a>
+</div>
+
+{% endblock content %}
 
