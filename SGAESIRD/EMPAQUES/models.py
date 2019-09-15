@@ -25,7 +25,7 @@ class Usuario(models.Model):
 		('E','Eliminado')
 	)
 	id_Usuario = models.AutoField(primary_key=True, help_text="ID")
-	usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 	rut = models.CharField(max_length=10, null=True)
 	rol = models.CharField(max_length=1, choices=OPCIONES_ROL, null=True)
 	fecha_ingreso = models.DateTimeField(default=timezone.now, null=True)
