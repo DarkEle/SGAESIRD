@@ -57,6 +57,18 @@ body {
     width: 50%;
   }
   
+  .left{
+    float:left;
+    display:inline-block;
+    width: 50%;
+    background-color:red;
+  }
+  .right{
+    float:right;
+    display:inline-block;
+    width: 50%;
+  }
+
   .login {
     overflow: hidden;
     background-color: white;
@@ -176,3 +188,6 @@ body {
     font-size: 12px;
   }
   
+
+
+

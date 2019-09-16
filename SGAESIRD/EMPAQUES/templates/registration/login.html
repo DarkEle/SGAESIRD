@@ -5,6 +5,8 @@
 
 {% block content %}
 
+
+{{ form.as_p }}
 <div>
   <div class= "split left">
     <div class="info">
@@ -24,11 +26,9 @@
 
   <div class="split right">
     
-      <form class="login" name="LoginForm" action="/" method="post">
-        {% csrf_token %}
-        <input type="text" placeholder="Username" for="username">
-        {% csrf_token %}
-        <input type="password" placeholder="Password" for="password">
+      <form class="login"method="post">{% csrf_token %}
+        {{ form.username }}
+        {{ form.password }}
         <button>Login</button>
       </form>
   </div>
