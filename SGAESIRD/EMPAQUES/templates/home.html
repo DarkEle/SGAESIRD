@@ -10,6 +10,7 @@
         <h1>Actualmente eres un usuario: {{ user.usuario.get_rol_display }}</h1>
         <a href="{% url 'logout' %}">Cerrar sesión</a>
     {% else %}
+        <h1>No estoy logueado :c   </h1>
         <a href="{% url 'registrate' %}">Registrate</a>
         <a href="{% url 'login' %}">Iniciar sesión</a>
     {% endif %}

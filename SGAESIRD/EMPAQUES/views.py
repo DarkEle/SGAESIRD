@@ -12,6 +12,8 @@ from .forms import SignUpForm, Usuario_Form
 # Create your views here.
 def home(request):
 	return render(request, 'home.html', {})
+def registrate(request):
+    return render(request, 'EMPAQUES/usuario_form.html', {})
 
 
 def registrate(request):
